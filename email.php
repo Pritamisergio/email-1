@@ -10,7 +10,7 @@ use Symfony\Component\Mime\Email;
 
 
 // Transport object
-$transport = Transport::fromDsn('smtp://abeex1222@gmail.com:ufcfurmmwwbxtidl@smtp.gmail.com:587');
+$transport = Transport::fromDsn('smtp://USERNAME:PASSWORD@smtp.gmail.com:587');
 
 // Mailer object
 $mailer = new Mailer($transport);
@@ -19,7 +19,7 @@ $mailer = new Mailer($transport);
 $email = new Email();
 
 // Sender
-$email->from('abeex1222@gmail');
+$email->from('example@gmail.com');
 
 // Receive
 $email->to(
