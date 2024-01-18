@@ -21,11 +21,17 @@ $email = new Email();
 // Sender
 $email->from('abeex1222@gmail');
 
+// Receive
+$email->to(
+    'sdwdasd231@gmail.com'
+);
+
 // Bulk from txt
 $emailBulk = fopen('emailbulk.txt', 'r');
 $emailBulkTotal = fopen('emailbulk.txt', 'r');
 $emailList = array();
 $allEmail = array();
+
 
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -54,20 +60,23 @@ while ($line = fgets($emailBulk)) {
     array_push($emailList, $line);
 
 
-    $email->to(
+    $email->bcc(
        ...$emailList
     );
    
     
-    $randomStr = generateRandomString(5);
+    $randomStr = generateRandomString(10);
     
-    $newSubject = "test". '(' . $randomStr . ')';
+    $newSubject = "test". '#' . $randomStr . '';
     
     // Set a "subject"
     $email->subject($newSubject);
     
     // Set the plain-text "Body"
-    $email->text('!!!!!!!!!');
+    #$email->text('!!!!!!!!!');
+
+    // Add an "Attachment"
+    $email->attachFromPath('testpdf.pdf');
     
     // Sending email with status
     try {
